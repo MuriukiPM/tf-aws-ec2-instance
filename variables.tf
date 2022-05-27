@@ -8,6 +8,9 @@ variable "instance_type" {
 variable "iam_instance_profile" {
   default = ""
 }
+variable "instance_hibernation" {
+  default = false
+}
 variable "instance_set_public_address" {
   default = true
 }

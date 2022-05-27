@@ -8,6 +8,7 @@ resource "aws_instance" "instance" {
   ami                  = var.instance_ami
   instance_type        = var.instance_type
   iam_instance_profile = var.iam_instance_profile
+  hibernation          = var.instance_hibernation
 
   subnet_id                   = var.instance_subnet_id
   vpc_security_group_ids      = var.vpc_sg_ids
