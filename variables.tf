@@ -19,6 +19,9 @@ variable "instance_volume_type" {
   description = "type of volume. Valid values include standard, gp2, gp3, io1, io2, sc1, or st1"
   default     = "gp2"
 }
+variable "instance_volume_encrypted" {
+  default = false
+}
 variable "instance_volume_tags" {
   description = " A map of key/value label pairs to assign to the root block device."
   default     = {}

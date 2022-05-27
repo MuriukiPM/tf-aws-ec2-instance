@@ -21,6 +21,7 @@ resource "aws_instance" "instance" {
   root_block_device {
     volume_size = var.instance_volume_size
     volume_type = var.instance_volume_type
+    encrypted   = var.instance_volume_encrypted
     tags        = var.instance_volume_tags
   }
 
