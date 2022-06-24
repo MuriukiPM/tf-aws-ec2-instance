@@ -1,3 +1,13 @@
+terraform {
+  required_version = ">= 0.13"
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "4.6.0"
+    }
+  }
+}
+
 resource "aws_key_pair" "key_pair" {
   key_name   = var.instance_ssh_priv_key_file
   public_key = file("${var.instance_ssh_key_path}${var.instance_ssh_pub_key_file}")
