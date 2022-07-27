@@ -53,4 +53,6 @@ variable "instance_key_pair_tags" {
   description = "A map of key/value label pairs to assign to the key-pair."
   default     = {}
 }
-
+variable "run_ansible_ssh" {
+  default = false
+}

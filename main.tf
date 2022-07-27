@@ -37,14 +37,16 @@ resource "aws_instance" "instance" {
 
   # ansible ssh keys transfer
   connection {
+    count       = var.run_ansible_ssh ? 1 : 0
     type        = "ssh"
     user        = var.ansible_vm_ssh_user
-    timeout     = "500s"
+    timeout     = "100s"
     private_key = file("${var.instance_ssh_key_path}${var.ansible_vm_ssh_priv_key_file}")
     host        = var.ansible_vm_instance_ip
   }
 
   provisioner "file" {
+    count       = var.run_ansible_ssh ? 1 : 0
     source      = "${var.instance_ssh_key_path}${var.instance_ssh_priv_key_file}"
     destination = "${var.instance_ssh_key_path}${var.instance_ssh_priv_key_file}"
   }
