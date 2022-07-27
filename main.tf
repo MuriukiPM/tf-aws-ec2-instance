@@ -23,7 +23,7 @@ resource "aws_instance" "instance" {
   subnet_id                   = var.instance_subnet_id
   vpc_security_group_ids      = var.vpc_sg_ids
   associate_public_ip_address = var.instance_set_public_address
-  
+
   lifecycle {
     ignore_changes = [associate_public_ip_address]
   }
