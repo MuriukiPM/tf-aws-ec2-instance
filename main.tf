@@ -37,7 +37,7 @@ resource "aws_instance" "instance" {
 }
 
 resource "null_resource" "ansible_ssh_setup" {
-  count       = var.run_ansible_ssh ? 1 : 0
+  count      = var.run_ansible_ssh ? 1 : 0
   depends_on = [aws_instance.instance]
 
   # ansible ssh keys transfer
