@@ -34,10 +34,14 @@ resource "aws_instance" "instance" {
     encrypted   = var.instance_volume_encrypted
     tags        = var.instance_volume_tags
   }
+}
+
+resource "null_resource" "ansible_ssh_setup" {
+  count       = var.run_ansible_ssh ? 1 : 0
+  depends_on = [aws_instance.instance]
 
   # ansible ssh keys transfer
   connection {
-    count       = var.run_ansible_ssh ? 1 : 0
     type        = "ssh"
     user        = var.ansible_vm_ssh_user
     timeout     = "100s"
@@ -46,7 +50,6 @@ resource "aws_instance" "instance" {
   }
 
   provisioner "file" {
-    count       = var.run_ansible_ssh ? 1 : 0
     source      = "${var.instance_ssh_key_path}${var.instance_ssh_priv_key_file}"
     destination = "${var.instance_ssh_key_path}${var.instance_ssh_priv_key_file}"
   }
