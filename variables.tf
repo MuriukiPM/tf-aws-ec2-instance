@@ -37,9 +37,15 @@ variable "instance_subnet_id" {
 variable "vpc_sg_ids" {}
 
 # ssh access
-variable "instance_ssh_key_path" {}
-variable "instance_ssh_priv_key_file" {}
-variable "instance_ssh_pub_key_file" {}
+variable "instance_ssh_key_path" {
+  default = ""
+}
+variable "instance_ssh_priv_key_file" {
+  default = ""
+}
+variable "instance_ssh_pub_key_file" {
+  default = ""
+}
 variable "ansible_vm_instance_ip" {
   default = ""
 }
@@ -55,4 +61,7 @@ variable "instance_key_pair_tags" {
 }
 variable "run_ansible_ssh" {
   default = false
+}
+variable "instance_aws_key_pair_name" {
+  default = ""
 }
