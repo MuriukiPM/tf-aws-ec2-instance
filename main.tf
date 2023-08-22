@@ -9,6 +9,7 @@ terraform {
 }
 
 resource "aws_key_pair" "key_pair" {
+  count      = var.instance_aws_key_pair_name == "" ? 1 : 0
   key_name   = var.instance_ssh_priv_key_file
   public_key = file("${var.instance_ssh_key_path}${var.instance_ssh_pub_key_file}")
   tags       = var.instance_key_pair_tags
@@ -28,7 +29,7 @@ resource "aws_instance" "instance" {
     ignore_changes = [associate_public_ip_address]
   }
 
-  key_name = aws_key_pair.key_pair.key_name
+  key_name = var.instance_aws_key_pair_name == "" ? aws_key_pair.key_pair[0].key_name : var.instance_aws_key_pair_name
 
   tags = var.instance_tags
 
